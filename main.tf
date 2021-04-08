@@ -22,6 +22,17 @@ resource "azuredevops_project" "project" {
   work_item_template = "Agile"
 }
 
+resource "azuredevops_project_features" "my-project-features" {
+  project_id = azuredevops_project.project.id
+  features = {
+      "boards" = "disabled"
+      "repositories" = "disabled"
+      "pipelines" = "enabled"
+      "testplans" = "disabled"
+      "artifacts" = "disabled"
+  }
+}
+
 /*
 resource "azuredevops_serviceendpoint_github" "github_serviceendpoint" {
   project_id            = azuredevops_project.project.id
